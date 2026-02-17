@@ -2,7 +2,8 @@
 // Amir Moeini Rad
 // September 2025
 
-// Main Concept: Abstract Factory Design Pattern
+// Main Concept: The Abstract Factory Design Pattern
+
 // In this pattern, we create an interface for creating families of related or dependent objects without specifying their concrete classes.
 // This pattern is particularly useful when the system needs to be independent of how its products are created, composed, and represented.
 
@@ -10,14 +11,14 @@
 // Factory Method uses inheritance and relies on a subclass to handle the desired object instantiation,
 // Abstract Factory uses composition to delegate the responsibility of object instantiation to another object via interfaces.
 
-// To put is more simply:
+// To put this more simply:
 // (1) In Factory Method, each factory method creates one product. (based on class hierarchy)
 // (2) In Abstract Factory, each factory creates a family of products. (based on composition and interfaces)
 
 
 namespace AbstractFactoryDP
 {
-    // Products defined as interfaces
+    // Products Family defined as interfaces
     interface IButton
     {
         void Paint();
@@ -33,7 +34,7 @@ namespace AbstractFactoryDP
     ////////////////////////////////////////////////////
     
 
-    // Concrete Products (Windows)
+    // Concrete Products Family (Windows)
     class WindowsButton : IButton
     {
         public void Paint() => Console.WriteLine("Rendering a Windows Button.");
@@ -49,7 +50,7 @@ namespace AbstractFactoryDP
     ////////////////////////////////////////////////////
     
 
-    // Concrete Products (Mac)
+    // Concrete Products Family (Mac)
     class MacButton : IButton
     {
         public void Paint() => Console.WriteLine("Rendering a Mac Button.");
@@ -105,11 +106,9 @@ namespace AbstractFactoryDP
             Console.WriteLine("-----------------------------------------------------\n");
 
 
-            // Choose factory (e.g., Windows)
-            IUIFactory factory = new WindowsFactory();
-
-
+            // Create a factory (e.g., Windows)
             // Create products from the same family
+            IUIFactory factory = new WindowsFactory();           
             IButton button = factory.CreateButton();
             ICheckbox checkbox = factory.CreateCheckbox();
 
